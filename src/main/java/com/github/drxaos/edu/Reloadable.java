@@ -2,6 +2,6 @@ package com.github.drxaos.edu;
 
 public interface Reloadable {
 
-    void reload();
+    void reload() throws FileOperationException;
 
 }

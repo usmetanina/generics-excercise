@@ -16,6 +16,7 @@ public class SavedListTest {
             file.delete();
         }
 
+        // create list
         SavedList<String> list = new SavedList<String>(file);
         list.add("One");
         list.add("Two");
@@ -25,12 +26,14 @@ public class SavedListTest {
         }
         list.remove("Two");
 
+        // check contents
         Assert.assertTrue(list.contains("Hello 50"));
         Assert.assertEquals(102, list.size());
         Assert.assertEquals("One", list.get(0));
         Assert.assertEquals("Hello 99", list.get(1));
         Assert.assertEquals("Hello 0", list.get(100));
 
+        // create another list
         File file2 = new File("./list1a.dat");
         if (file2.exists()) {
             file2.delete();
@@ -40,6 +43,7 @@ public class SavedListTest {
         list2.add("Two");
         list2.add("Three");
 
+        // retain
         list.retainAll(list2);
         Assert.assertEquals(2, list.size());
     }
@@ -52,6 +56,7 @@ public class SavedListTest {
             file.delete();
         }
 
+        // create list
         SavedList<String> list = new SavedList<String>(file);
         list.add("One");
         list.add("Two");
@@ -62,6 +67,7 @@ public class SavedListTest {
         list.remove("Two");
         list = null;
 
+        // load list
         SavedList<String> loadedList = new SavedList<String>(file);
 
         Assert.assertTrue(file.exists());
@@ -79,6 +85,7 @@ public class SavedListTest {
             file.delete();
         }
 
+        // create list
         SavedList<String> list = new SavedList<String>(file);
         list.add("One");
         list.add("Two");
@@ -88,6 +95,7 @@ public class SavedListTest {
         }
         list.remove("Two");
 
+        // load list and remove elements
         SavedList<String> loadedList = new SavedList<String>(file);
         for (Iterator<String> iterator = loadedList.iterator(); iterator.hasNext(); ) {
             String next = iterator.next();
@@ -97,11 +105,15 @@ public class SavedListTest {
         }
         Assert.assertEquals(83, loadedList.size());
 
+        // reload
         list.reload();
         Assert.assertFalse(list.isEmpty());
         Assert.assertEquals(83, list.size());
 
+        // remove file
         file.delete();
+
+        // reload
         list.reload();
         Assert.assertTrue(list.isEmpty());
         Assert.assertEquals(0, list.size());
