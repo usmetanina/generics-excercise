@@ -9,7 +9,7 @@ public class SavedList<E extends Serializable> extends AbstractList<E> implement
     public SavedList(File file) {
     }
 
-    public void reload() throws FileOperationException{
+    public void reload() throws FileOperationException {
     }
 
     @Override

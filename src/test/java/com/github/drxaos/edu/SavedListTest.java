@@ -120,4 +120,28 @@ public class SavedListTest {
     }
 
 
+    @Test
+    public void test4() throws Exception {
+        File file = new File("./list4.dat");
+        if (file.exists()) {
+            file.delete();
+        }
+
+        // create list
+        SavedList<Integer> list = new SavedList<Integer>(file);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.set(0, 999);
+        list = null;
+
+        // load list
+        SavedList<Integer> loadedList = new SavedList<Integer>(file);
+
+        Assert.assertTrue(file.exists());
+        Assert.assertEquals(Integer.valueOf(999), loadedList.get(0));
+        Assert.assertEquals(Integer.valueOf(2), loadedList.get(1));
+        Assert.assertEquals(Integer.valueOf(3), loadedList.get(2));
+        Assert.assertEquals(3, loadedList.size());
+    }
 }
