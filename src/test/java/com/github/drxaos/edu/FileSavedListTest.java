@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Iterator;
 
-public class SavedListTest {
+public class FileSavedListTest {
 
     @Test
     public void test1() throws Exception {
@@ -17,7 +17,7 @@ public class SavedListTest {
         }
 
         // create list
-        SavedList<String> list = new SavedList<String>(file);
+        FileSavedList<String> list = new FileSavedList<String>(file);
         list.add("One");
         list.add("Two");
         list.add("Three");
@@ -38,7 +38,7 @@ public class SavedListTest {
         if (file2.exists()) {
             file2.delete();
         }
-        SavedList<String> list2 = new SavedList<String>(file2);
+        FileSavedList<String> list2 = new FileSavedList<String>(file2);
         list2.add("One");
         list2.add("Two");
         list2.add("Three");
@@ -57,7 +57,7 @@ public class SavedListTest {
         }
 
         // create list
-        SavedList<String> list = new SavedList<String>(file);
+        FileSavedList<String> list = new FileSavedList<String>(file);
         list.add("One");
         list.add("Two");
         list.add("Three");
@@ -68,7 +68,7 @@ public class SavedListTest {
         list = null;
 
         // load list
-        SavedList<String> loadedList = new SavedList<String>(file);
+        FileSavedList<String> loadedList = new FileSavedList<String>(file);
 
         Assert.assertTrue(file.exists());
         Assert.assertTrue(loadedList.contains("Hello 50"));
@@ -86,7 +86,7 @@ public class SavedListTest {
         }
 
         // create list
-        SavedList<String> list = new SavedList<String>(file);
+        FileSavedList<String> list = new FileSavedList<String>(file);
         list.add("One");
         list.add("Two");
         list.add("Three");
@@ -96,7 +96,7 @@ public class SavedListTest {
         list.remove("Two");
 
         // load list and remove elements
-        SavedList<String> loadedList = new SavedList<String>(file);
+        FileSavedList<String> loadedList = new FileSavedList<String>(file);
         for (Iterator<String> iterator = loadedList.iterator(); iterator.hasNext(); ) {
             String next = iterator.next();
             if (next.contains("8")) {
@@ -128,7 +128,7 @@ public class SavedListTest {
         }
 
         // create list
-        SavedList<Integer> list = new SavedList<Integer>(file);
+        FileSavedList<Integer> list = new FileSavedList<Integer>(file);
         list.add(1);
         list.add(2);
         list.add(3);
@@ -136,7 +136,7 @@ public class SavedListTest {
         list = null;
 
         // load list
-        SavedList<Integer> loadedList = new SavedList<Integer>(file);
+        FileSavedList<Integer> loadedList = new FileSavedList<Integer>(file);
 
         Assert.assertTrue(file.exists());
         Assert.assertEquals(Integer.valueOf(999), loadedList.get(0));
